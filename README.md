@@ -1,1 +1,1 @@
-Messing around with setting up Docker Containers and AWS deployment
+Setting up and production workflow with Docker and deploying to AWS.
