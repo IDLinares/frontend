@@ -1,9 +1,5 @@
 name: Deploy Frontend
-on:
-  push:
-    branches:
-      - main
-  pull-request:
+on: [push, pull-request]
     branches:
       - main
 
@@ -19,8 +15,8 @@ jobs:
 
   deploy:
    runs-on: ubuntu-latest
+    if: $ {{ github.event_name == 'pull_request' && github.event.pull_request.merged == true }}
     needs: test
-    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v4
 
