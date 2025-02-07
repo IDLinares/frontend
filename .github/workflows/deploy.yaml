@@ -18,13 +18,12 @@ jobs:
       - run: docker run -e CI=true platanozay/frontend npm run test
 
   deploy:
-   runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
     needs: test
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up AWS CLI
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
 
